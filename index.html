@@ -15,13 +15,144 @@
     />
     <!-- local style -->
     <link rel="stylesheet" href="styles/global.css" />
+
+    
+    
   </head>
   <body>
     <!-- Header Area -->
-    <header></header>
+    <header>
+      <div class="nav-bar">
+        <div class="logo">
+          <img src="assets/images/DSA LOGO ONLY.png" alt="" />
+        </div>
+        
+        <ul class="nav-bar-lis">
+          
+          <li><a href="#home">Home |</a></li>
+          <li><a href="#about">About |</a></li>
+          <li><a href="#project">Project |</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+        
+    </header>
     <!-- Main Area -->
-    <main>
-      <h1>My Amazing Portfolio</h1>
-    </main>
+    <section class="homesection">
+      <h1>I Am Akinkuolie Olaitan</h1>
+      <p>I am an aspiring software developer, and creative designer</p>
+      <p>I build clean, responsive websites and design user-friendly digital experiences.</p>
+    </section>
+
+    <section class="aboutsection">
+        <h1>About Me</h1>
+        <p class="aboutpar"> I'm a passionate and self-driven creative who enjoys turning ideas into digital products.
+          I specialize in building simple, responsive websites using HTML, CSS, and a touch of JavaScript.
+          Whether it's designing a beautiful layout or coding a user-friendly site, I love combining creativity with functionality.</p>
+
+
+          <h2>My Core Skills</h2>
+          <div id="skills-grid">
+            
+            <ol class="skills-list">
+              <li class="skill">HTML</li>
+              <li class="skill">CSS</li>
+              <li class="skill">JavaScript</li>
+              <li class="skill">Photoshop</li>
+              <li class="skill">Canva</li>
+              <li class="skill">Coreldraw</li>
+            </ol>
+          </div>
+    </section>
+
+    <section class="contact-section">
+      <h1>Contact Me</h1>
+      <p> Email: olaitanclems24@gmail.com</p>
+      <h3><a href="https://github.com/Olaweb24" class="contact-link">Github |</a> <span><a href="https://www.linkedin.com/in/olaitan-akinkuolie-2353b3204/" class="contact-link">Linkedin</a></span> </h3>
+    </section>
+        
+<br><br>
+    
+    
+    <div class="form-container">
+      <h2 class="form-header">Contact Form </h2><br><br><br>
+    
+      <form id="myForm">
+        <label for="firstName">First Name:</label>
+
+        <input type="text" id="firstName" placeholder="Enter your name" required><br><br><br>
+
+        <label for="secondName">Second Name:</label>
+
+        <input type="text" id="secondName" placeholder="Enter your name" required><br><br><br>
+
+        <label for="email">Email:</label>
+
+        <input type="email" id="email" placeholder="Enter your email" required><br><br><br>
+
+        <label for="message">Message</label>
+        <input type="text" id="message" placeholder="Type your message"><br><br><br>
+
+        
+          <button type="submit" class="submit">Submit</button>
+        
+        
+      </form>
+    <br><br>
+      <h3 class="savedEntriesContainer">Saved Entries</h3>
+      <div id="entriesContainer"></div>
+    </div>
+    
+    
+      <script>
+        const form = document.getElementById('myForm');
+        const entriesContainer = document.getElementById('entriesContainer');
+    
+        // Load entries from localStorage when the page loads
+        window.onload = () => {
+          const saved = JSON.parse(localStorage.getItem('formEntries')) || [];
+          saved.forEach(entry => displayEntry(entry));
+        };
+    
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+    
+          const firstName = document.getElementById('firstName').value.trim();
+
+          const secondName = document.getElementById('secondName').value.trim();
+          const email = document.getElementById('email').value.trim();
+
+          const message = document.getElementById('message').value.trim();
+    
+    
+          if (!firstName || !secondName || !email) return alert("Please fill all fields");
+    
+          const entry = { firstName, secondName, email, message };
+    
+          // Save to localStorage
+          let entries = JSON.parse(localStorage.getItem('formEntries')) || [];
+          entries.push(entry);
+          localStorage.setItem('formEntries', JSON.stringify(entries));
+    
+          // Show on page
+          displayEntry(entry);
+    
+          form.reset(); // Clear the form
+        });
+    
+        function displayEntry(entry) {
+          const div = document.createElement('div');
+          div.className = 'entry';
+          div.innerHTML = `<strong>First Name:</strong> ${entry.firstName} <br> <strong>Second Name:</strong> ${entry.secondName} <br><strong>Email:</strong> ${entry.email} <br><strong>Message:</strong> ${entry.message}`;
+          entriesContainer.appendChild(div);
+        }
+      </script>
+    
+    <br><br>
+    
+    <footer>
+      <p>© 2025 Digital SkillPort Academy. All rights reserved.</p>
+    </footer>
+   
   </body>
 </html>
